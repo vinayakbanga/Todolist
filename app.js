@@ -34,7 +34,7 @@ const itemsSchema={
 const Item=mongoose.model("Item",itemsSchema);
 //adding some items
 const item1=new Item({
-  name:"Welcome to Your todolist"
+  name:"Welcome to Your Todolist"
 });
 
 const item2=new Item({
@@ -42,7 +42,7 @@ const item2=new Item({
 });
 
 const item3=new Item({
-  name:"<-- Hit this to dlete an item"
+  name:"<-- Hit this to delete an item"
 });
 
 const defaultItems=[item1,item2,item3];
@@ -83,7 +83,7 @@ app.get("/", function(req, res){
     }else{
       
       //then we render our list.ejs template and add the day and items in it
-      res.render("list", {listTitle: "today",newListItems :foundItems,Date: day});  //for this line to work we should have views folder and it should have the list.ejs file
+      res.render("list", {listTitle: "Today",newListItems :foundItems,Date: day});  //for this line to work we should have views folder and it should have the list.ejs file
       
     }
     
@@ -118,7 +118,7 @@ app.post("/",function(req,res){//through post we will recive the data from the u
 const item=new Item({
   name:itemName
 });
-if(listName === "today"){
+if(listName === "Today"){
   
   item.save();
   res.redirect("/");
@@ -155,7 +155,7 @@ app.post("/delete",function(req,res){
   const checkedItemId=(req.body.checkbox);
   const listName=req.body.listName;
   console.log(req.body.listName);
-  if(listName === "today"){
+  if(listName === "Today"){
 
     Item.findByIdAndRemove(checkedItemId,function(err){
       if(err){
